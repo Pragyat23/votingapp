@@ -4,7 +4,7 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c',
-   'docker pull gcr.io/mykubernetes-234210/hello-app:latest || exit 0'
+   'docker pull gcr.io/mykubernetes-234210/votingapp:latest || exit 0'
   ]
 #step 2
 #- name: gcr.io/cloud-builders/docker
@@ -20,3 +20,19 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=vish'
+#step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set',
+   'image',
+   'deployment',
+   'votingapp',
+   'votingapp=gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=vish'
+# push images to Google Container Registry with tags
+images: [
+   'gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA',
+  ]
