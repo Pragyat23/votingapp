@@ -21,17 +21,17 @@ steps:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=vish'
 #step 4
-#- name: 'gcr.io/cloud-builders/kubectl'
-#  args: [
-#   'set',
-#   'image',
-#   'deployment',
-#   'votingapp',
-#   'votingapp=gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA'
-#  ]
-#  env:
-#  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-#  - 'CLOUDSDK_CONTAINER_CLUSTER=vish'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set',
+   'image',
+   'deployment',
+   'votingapp',
+   'votingapp=gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=vish'
 # push images to Google Container Registry with tags
 images: [
    'gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA',
