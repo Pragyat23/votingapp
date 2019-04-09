@@ -26,7 +26,7 @@ steps:
    'set',
    'image',
    'deployment',
-   'votingapp',
+#   'votingapp',
    'votingapp=gcr.io/mykubernetes-234210/votingapp:$BRANCH_NAME-$COMMIT_SHA'
   ]
   env:
