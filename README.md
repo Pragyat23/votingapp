@@ -1,1 +1,1 @@
-simple distributed application running across multiple Docker containers.
+This is simple distributed application running across multiple Docker containers.
